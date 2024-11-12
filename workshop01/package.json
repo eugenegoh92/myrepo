@@ -8,7 +8,7 @@
         "build:server": "esbuild server.jsx --bundle --outfile=build/server.js --platform=node",
         "build": "npm run build:client && npm run build:server",
         "start": "node ./build/server.js",
-        "predeploy": "npm instal && npm run build",
+        "predeploy": "npm install && npm run build",
         "deploy": "gh-pages -d build"
     },
     "dependencies": {
