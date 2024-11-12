@@ -1,0 +1,24 @@
+{
+    "name": "node-http-server",
+    "version": "1.0.0",
+    "description": "Node.js example server starter project",
+    "homepage": "https://eugenegoh92.github.io/myrepo",
+    "scripts": {
+        "build:client": "esbuild index.jsx --bundle --outfile=dist/bundle.js --loader:.js=jsx",
+        "build:server": "esbuild server.jsx --bundle --outfile=build/server.js --platform=node",
+        "build": "npm run build:client && npm run build:server",
+        "start": "node ./build/server.js",
+        "deploy": "gh-pages -d build"
+    },
+    "dependencies": {
+        "esbuild": "0.14.13",
+        "express": "4.17.2",
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
+    },
+    "devDependencies": {
+        "gh-pages": "^6.2.0",
+        "nodemon": "1.18.4"
+    },
+    "keywords": []
+}
