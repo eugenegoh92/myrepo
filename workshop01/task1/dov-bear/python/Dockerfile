@@ -16,4 +16,7 @@ ENV INSTANCE_HASH=e3c1d9dbb8eaf4c3a7a67c883f0d3b31
 
 EXPOSE ${PORT}
 
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl http://localhost:${PORT}/healthz
+
 ENTRYPOINT python main.py
