@@ -16,4 +16,4 @@ ENV INSTANCE_HASH=e3c1d9dbb8eaf4c3a7a67c883f0d3b31
 
 EXPOSE ${PORT}
 
-ENTRYPOINT python main.py ${PORT}
+ENTRYPOINT python main.py
