@@ -22,6 +22,8 @@ services:
       - "8080:3000"
     networks:
       - northwind-net
+    depends_on:
+      - mydb
 
 networks:
   northwind-net:
