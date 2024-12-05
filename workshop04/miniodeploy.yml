@@ -72,10 +72,50 @@ spec:
             - name: data-vol
               mountPath: /data
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-svc
+  namespace: minions
+  labels:
+    app: minio
+spec:
+  type: ClusterIP
+  selector:
+    app: minio
+    name: minio-po
+  ports:
+    - name: server
+      port: 9000
+    - name: console
+      port: 9090
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minio-ing
+  name: minio-data-ing
+  namespace: minions
+  labels:
+    app: minio
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rps: "5"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: data-137.184.250.232.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-svc
+                port:
+                  name: service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-console-ing
   namespace: minions
   labels:
     app: minio
@@ -89,16 +129,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: minio-hsvc
+                name: minio-svc
                 port:
-                  number: 9090
-    - host: data-137.184.250.232.nip.io
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: minio-hsvc
-                port:
-                  number: 9000
+                  name: console

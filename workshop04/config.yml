@@ -17,7 +17,7 @@ data:
   MINIO_ROOT_USER: admin
   MINIO_DATA_DIR: /data
   MINIO_DISTRIBUTED_MODE_ENABLED: "yes"
-  MINIO_DISTRIBUTED_NODES: minio-sts-{0...2}.minio-hsvc.minions.svc.cluster.local/data
+  MINIO_DISTRIBUTED_NODES: minio-sts-{0...3}.minio-hsvc.minions.svc.cluster.local/data
   MINIO_API_PORT_NUMBER: "9000"
   MINIO_CONSOLE_PORT_NUMBER: "9090"
   BITNAMI_DEBUG: "true"
